@@ -1,7 +1,6 @@
 $ScriptDirectory = (split-path -parent $MyInvocation.MyCommand.Definition) 
-$ScriptDirectory=$ScriptDirectory+ "\"
 
-[Environment]::SetEnvironmentVariable(
-    "Path",
-    [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::User) + ";"+$ScriptDirectory,
-    [EnvironmentVariableTarget]::User)
+$path = [System.Environment]::GetEnvironmentVariable('Path','User')
+
+[System.Environment]::SetEnvironmentVariable('Path', $path +
+";$ScriptDirectory", 'User')      
